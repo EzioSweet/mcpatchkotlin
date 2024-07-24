@@ -14,8 +14,8 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
-    implementation("com.github.kittinunf.fuel:fuel:3.0.0-alpha03")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.1")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("com.charleskorn.kaml:kaml:0.60.0")
 }
 
 tasks.test {

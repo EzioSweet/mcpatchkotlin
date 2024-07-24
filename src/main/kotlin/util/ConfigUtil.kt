@@ -1,19 +1,20 @@
 package cn.eziosweet.util
 
 import cn.eziosweet.model.ConfigModel
-import fuel.Fuel
-import fuel.get
-import kotlinx.coroutines.runBlocking
-import kotlinx.serialization.json.Json
+import com.charleskorn.kaml.Yaml
+import kotlinx.serialization.decodeFromString
+import okhttp3.OkHttpClient
+import okhttp3.Request
+
 import java.util.logging.Logger
 
 
 object ConfigUtil {
-    fun getRemoteConfig(url:String,logger:Logger): ConfigModel {
-        return runBlocking {
-            val result =  Fuel.get(url).body.string()
-            val bean = Json.decodeFromString<ConfigModel>(result)
-            return@runBlocking bean
-        }
+    fun getRemoteConfig(url:String,logger:Logger,client: OkHttpClient): ConfigModel? {
+        val request = Request.Builder().url(url).get().build()
+        val call =client.newCall(request)
+        val response = call.execute()
+        logger.info(response.body.toString())
+        return response.body?.string()?.let { Yaml.default.decodeFromString<ConfigModel>(it) }
     }
 }
