@@ -14,8 +14,7 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
-    implementation("cn.hutool:hutool-http:5.8.29")
-    implementation("cn.hutool:hutool-log:5.8.29")
+    implementation("com.github.kittinunf.fuel:fuel:3.0.0-alpha03")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.1")
 }
 
