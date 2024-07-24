@@ -14,7 +14,7 @@ data class ConfigModel(
     @Serializable
     data class Modrinth(
         var name: String,
-        var version: String,
+        var version: String?,
         var path:String
     )
     @Serializable
